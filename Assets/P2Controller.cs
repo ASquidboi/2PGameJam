@@ -8,6 +8,7 @@ public class P2Controller : MonoBehaviour
     [SerializeField] float MoveSpeed;
     [SerializeField] float turnSpeed = 200f; // Adjust for your desired turn speed
     private float currentRotation;
+    public float P2Health = 100f;
     // Start is called before the first frame update
     void Start()
     {

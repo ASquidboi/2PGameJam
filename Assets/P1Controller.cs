@@ -8,6 +8,7 @@ public class P1Controller : MonoBehaviour
     [SerializeField] float MoveSpeed;
     [SerializeField] float turnSpeed = 200f; // Adjust for your desired turn speed
     private float currentRotation;
+    [SerializeField] public float P1Health = 100f;
 
     // Start is called before the first frame update
     void Start()
