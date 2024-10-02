@@ -27,13 +27,13 @@ public class P2Controller : MonoBehaviour
         // Rotate counterclockwise with Q
         if (Input.GetKey(KeyCode.U))
         {
-            currentRotation -= turnSpeed * Time.deltaTime;
+            currentRotation += turnSpeed * Time.deltaTime;
         }
 
         // Optionally, rotate clockwise with E
         if (Input.GetKey(KeyCode.O))
         {
-            currentRotation += turnSpeed * Time.deltaTime;
+            currentRotation -= turnSpeed * Time.deltaTime;
         }
         transform.rotation = Quaternion.Euler(0, 0, currentRotation);
     }
