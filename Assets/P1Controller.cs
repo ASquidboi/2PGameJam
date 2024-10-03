@@ -38,4 +38,11 @@ public class P1Controller : MonoBehaviour
         }
         transform.rotation = Quaternion.Euler(0, 0, currentRotation);
     }
+
+    public void TakeDamage(float damage)
+    {
+        P1Health -= damage;
+        //Damage effects & multipliers & stuff
+    }
+
 }
