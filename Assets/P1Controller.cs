@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class P1Controller : MonoBehaviour
@@ -19,16 +20,11 @@ public class P1Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    }
 
-    private void FixedUpdate()
-    {
-        rb.velocity = new Vector2(Input.GetAxis("P1Horizontal") * MoveSpeed, Input.GetAxis("P1Vertical") * MoveSpeed);
-        // Rotate counterclockwise with Q
         if (Input.GetKey(KeyCode.Q))
         {
             currentRotation += turnSpeed * Time.deltaTime;
+
         }
 
         // Optionally, rotate clockwise with E
@@ -36,7 +32,18 @@ public class P1Controller : MonoBehaviour
         {
             currentRotation -= turnSpeed * Time.deltaTime;
         }
-        transform.rotation = Quaternion.Euler(0, 0, currentRotation);
+
+    }
+
+    private void FixedUpdate()
+    {
+        //rb.velocity = new Vector2(Input.GetAxis("P1Horizontal") * MoveSpeed, Input.GetAxis("P1Vertical") * MoveSpeed);
+        Vector2 dir = new Vector2(Mathf.Cos(rb.rotation * Mathf.Deg2Rad), Mathf.Sin(rb.rotation * Mathf.Deg2Rad));
+        rb.velocity = dir.normalized * MoveSpeed;
+        // Rotate counterclockwise with Q
+        
+        //transform.rotation = Quaternion.Euler(0, 0, currentRotation);
+        rb.rotation = currentRotation;
     }
 
     public void TakeDamage(float damage)
