@@ -55,19 +55,19 @@ public class P2Controller : MonoBehaviour
 
         if (Input.GetKey(KeyCode.I))
         {
-            desiredVelocity += forwardDir.normalized * MoveSpeed; // Move forward
+            desiredVelocity += -forwardDir.normalized * MoveSpeed; // Move forward
         }
         if (Input.GetKey(KeyCode.K))
         {
-            desiredVelocity += -forwardDir.normalized * MoveSpeed; // Move backward
+            desiredVelocity += forwardDir.normalized * MoveSpeed; // Move backward
         }
         if (Input.GetKey(KeyCode.J))
         {
-            desiredVelocity += rightDir.normalized * MoveSpeed; // Strafe left
+            desiredVelocity += -rightDir.normalized * MoveSpeed; // Strafe left
         }
         if (Input.GetKey(KeyCode.L))
         {
-            desiredVelocity += -rightDir.normalized * MoveSpeed; // Strafe right
+            desiredVelocity += rightDir.normalized * MoveSpeed; // Strafe right
         }
 
         rb.velocity = desiredVelocity;
