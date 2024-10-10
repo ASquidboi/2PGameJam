@@ -81,6 +81,7 @@ public class P2Controller : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        print("test");
         P2Health -= damage;
         //Damage effects & multipliers & stuff
     }

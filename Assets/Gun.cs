@@ -33,15 +33,15 @@ public class Gun : MonoBehaviour
     void Update()
     {
         
-        Vector2 rotation_direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        float angle = Mathf.Atan2(rotation_direction.y, rotation_direction.x) * Mathf.Rad2Deg;
+        //Vector2 rotation_direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        //float angle = Mathf.Atan2(rotation_direction.y, rotation_direction.x) * Mathf.Rad2Deg;
 
      
 
-        Quaternion desiredRotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, 0.025f);
+        //Quaternion desiredRotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        //transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, 0.025f);
 
-        if (Input.GetMouseButtonDown(0) && ammo > 0 && Time.time >= nextTimeToFire)
+        if (Input.GetButtonDown("P1Fire") && ammo > 0 && Time.time >= nextTimeToFire)
         {
             //Sound, Muzzleflash, etc
             nextTimeToFire = Time.time + 1f / fireRate;
@@ -49,7 +49,7 @@ public class Gun : MonoBehaviour
             ammo -= 1;
         }
 
-        if (Input.GetButtonDown("Reload") && ammo < maxAmmo + 1)
+        if (Input.GetButtonDown("P1Reload") && ammo < maxAmmo + 1)
         {
             StartCoroutine(Reload());
         }
