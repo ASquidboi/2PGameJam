@@ -10,6 +10,9 @@ public class P1Controller : MonoBehaviour
     [SerializeField] float turnSpeed = 200f; // Adjust for your desired turn speed
     private float currentRotation;
     [SerializeField] public float P1Health = 100f;
+    [SerializeField] GameObject P1Spawn;
+    public bool P1IsDead = false;
+    //pow! you are dead!
 
     // Start is called before the first frame update
     void Start()
@@ -21,14 +24,14 @@ public class P1Controller : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKey(KeyCode.Q))
+        if (P1IsDead == false && Input.GetKey(KeyCode.Q))
         {
             currentRotation += turnSpeed * Time.deltaTime;
 
         }
 
         // Optionally, rotate clockwise with E
-        if (Input.GetKey(KeyCode.E))
+        if (P1IsDead == false && Input.GetKey(KeyCode.E))
         {
             currentRotation -= turnSpeed * Time.deltaTime;
         }
@@ -54,19 +57,19 @@ public class P1Controller : MonoBehaviour
 
         Vector2 desiredVelocity = Vector2.zero;
 
-        if (Input.GetKey(KeyCode.W))
+        if (P1IsDead == false && Input.GetKey(KeyCode.W))
         {
             desiredVelocity += forwardDir.normalized * MoveSpeed; // Move forward
         }
-        if (Input.GetKey(KeyCode.S))
+        if (P1IsDead == false && Input.GetKey(KeyCode.S))
         {
             desiredVelocity += -forwardDir.normalized * MoveSpeed; // Move backward
         }
-        if (Input.GetKey(KeyCode.A))
+        if (P1IsDead == false && Input.GetKey(KeyCode.A))
         {
             desiredVelocity += rightDir.normalized * MoveSpeed; // Strafe left
         }
-        if (Input.GetKey(KeyCode.D))
+        if (P1IsDead == false && Input.GetKey(KeyCode.D))
         {
             desiredVelocity += -rightDir.normalized * MoveSpeed; // Strafe right
         }
@@ -84,6 +87,21 @@ public class P1Controller : MonoBehaviour
     {
         P1Health -= damage;
         //Damage effects & multipliers & stuff
+        if (P1Health <= 0)
+        {
+            StartCoroutine(Die());
+        }
+    }
+
+    IEnumerator Die()
+    {
+        //PREPARE THYSELF
+        //effect code
+        P1IsDead = true;
+        yield return new WaitForSeconds(3);
+        transform.position = P1Spawn.transform.position;
+        P1Health = 100;
+        P1IsDead = false;
     }
 
 }

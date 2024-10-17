@@ -25,12 +25,18 @@ public class P1Bullet : MonoBehaviour
     //}
     void OnCollisionEnter2D(Collision2D collision)
     {
-        P2Controller enemy = collision.gameObject.GetComponent<P2Controller>();
+        P1Controller enemy = collision.gameObject.GetComponent<P1Controller>();
+        P2Controller enemy2 = collision.gameObject.GetComponent<P2Controller>();
 
         if (enemy != null)
         {
             print("AAAA");
             enemy.TakeDamage(damage);
+        }
+        if (enemy2 != null)
+        {
+            print("1");
+            enemy2.TakeDamage(damage);
         }
         Destroy(gameObject);
     }

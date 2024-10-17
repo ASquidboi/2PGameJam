@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using TMPro;
 
-public class Gun : MonoBehaviour
+public class P2Gun : MonoBehaviour
 {
     Vector3 mousePos;
     [Tooltip("Bullet prefab. Not a multiplier.")][SerializeField] GameObject bullet;
@@ -32,16 +32,16 @@ public class Gun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
         //Vector2 rotation_direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         //float angle = Mathf.Atan2(rotation_direction.y, rotation_direction.x) * Mathf.Rad2Deg;
 
-     
+
 
         //Quaternion desiredRotation = Quaternion.AngleAxis(angle, Vector3.forward);
         //transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, 0.025f);
 
-        if (Input.GetButtonDown("P1Fire") && ammo > 0 && Time.time >= nextTimeToFire)
+        if (Input.GetButtonDown("P2Fire") && ammo > 0 && Time.time >= nextTimeToFire)
         {
             //Sound, Muzzleflash, etc
             nextTimeToFire = Time.time + 1f / fireRate;
@@ -49,7 +49,7 @@ public class Gun : MonoBehaviour
             ammo -= 1;
         }
 
-        if (Input.GetButtonDown("P1Reload") && ammo < maxAmmo + 1)
+        if (Input.GetButtonDown("P2Reload") && ammo < maxAmmo + 1)
         {
             StartCoroutine(Reload());
         }
@@ -79,7 +79,7 @@ public class Gun : MonoBehaviour
             text2.SetText("");
         }
     }
-    
+
 
 
     //Transform.LookAt

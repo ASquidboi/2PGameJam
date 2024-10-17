@@ -10,6 +10,9 @@ public class P2Controller : MonoBehaviour
     [SerializeField] float turnSpeed = 200f; // Adjust for your desired turn speed
     private float currentRotation;
     [SerializeField] public float P2Health = 100f;
+    [SerializeField] GameObject P2Spawn;
+    public bool P2IsDead = false;
+    //pow! you are dead!
 
     // Start is called before the first frame update
     void Start()
@@ -21,13 +24,14 @@ public class P2Controller : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKey(KeyCode.U))
+        if (P2IsDead == false && Input.GetKey(KeyCode.U))
         {
             currentRotation += turnSpeed * Time.deltaTime;
 
         }
 
-        if (Input.GetKey(KeyCode.O))
+        // Optionally, rotate clockwise with E
+        if (P2IsDead == false && Input.GetKey(KeyCode.O))
         {
             currentRotation -= turnSpeed * Time.deltaTime;
         }
@@ -53,19 +57,19 @@ public class P2Controller : MonoBehaviour
 
         Vector2 desiredVelocity = Vector2.zero;
 
-        if (Input.GetKey(KeyCode.I))
+        if (P2IsDead == false && Input.GetKey(KeyCode.I))
         {
             desiredVelocity += -forwardDir.normalized * MoveSpeed; // Move forward
         }
-        if (Input.GetKey(KeyCode.K))
+        if (P2IsDead == false && Input.GetKey(KeyCode.K))
         {
             desiredVelocity += forwardDir.normalized * MoveSpeed; // Move backward
         }
-        if (Input.GetKey(KeyCode.J))
+        if (P2IsDead == false && Input.GetKey(KeyCode.J))
         {
             desiredVelocity += -rightDir.normalized * MoveSpeed; // Strafe left
         }
-        if (Input.GetKey(KeyCode.L))
+        if (P2IsDead == false && Input.GetKey(KeyCode.L))
         {
             desiredVelocity += rightDir.normalized * MoveSpeed; // Strafe right
         }
@@ -81,9 +85,23 @@ public class P2Controller : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        print("test");
         P2Health -= damage;
         //Damage effects & multipliers & stuff
+        if (P2Health <= 0)
+        {
+            StartCoroutine(Die());
+        }
+    }
+
+    IEnumerator Die()
+    {
+        //PREPARE THYSELF
+        //effect code
+        P2IsDead = true;
+        yield return new WaitForSeconds(3);
+        transform.position = P2Spawn.transform.position;
+        P2Health = 100;
+        P2IsDead = false;
     }
 
 }
