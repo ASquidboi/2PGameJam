@@ -12,6 +12,8 @@ public class P2Controller : MonoBehaviour
     [SerializeField] public float P2Health = 100f;
     [SerializeField] GameObject P2Spawn;
     public bool P2IsDead = false;
+    [SerializeField] GameObject Skull;
+    [Tooltip("McDonalds sprite, specifically.")][SerializeField] GameObject Sprite;
     //pow! you are dead!
 
     // Start is called before the first frame update
@@ -98,10 +100,14 @@ public class P2Controller : MonoBehaviour
         //PREPARE THYSELF
         //effect code
         P2IsDead = true;
+        Sprite.SetActive(false);
+        GameObject skull = Instantiate(Skull, transform.position, Quaternion.Euler(0, 0, 0));
         yield return new WaitForSeconds(3);
         transform.position = P2Spawn.transform.position;
         P2Health = 100;
         P2IsDead = false;
+        Sprite.SetActive(true);
+        Destroy(skull);
     }
 
 }
