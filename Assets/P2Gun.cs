@@ -27,6 +27,7 @@ public class P2Gun : MonoBehaviour
     {
         ammo = maxAmmo;
         reloadTimeWithSlide += 1;
+	text2.SetText("");
     }
 
     // Update is called once per frame
