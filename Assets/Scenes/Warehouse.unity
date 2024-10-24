@@ -8459,7 +8459,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveSpeed: 15
   turnSpeed: 300
-  P1Health: 10
+  P1Health: 100
   P1Spawn: {fileID: 1688728389}
   P1IsDead: 0
   Skull: {fileID: 2152777340373927083, guid: 99fd34b35317b9343a944ee5971846ba, type: 3}
