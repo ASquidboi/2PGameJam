@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 //using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using TMPro;
 
 public class P1Controller : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class P1Controller : MonoBehaviour
     [SerializeField] GameObject Skull;
     [Tooltip("McDonalds sprite, specifically.")][SerializeField] GameObject Sprite;
     //pow! you are dead!
+    [SerializeField] GameObject P1DeathScreen;
+    [Tooltip("text 2: text harder")][SerializeField] TMP_Text respawnText;
+    [SerializeField] ScoreManager scoremanager;
 
     // Start is called before the first frame update
     void Start()
@@ -99,14 +103,24 @@ public class P1Controller : MonoBehaviour
     {
         //PREPARE THYSELF
         //effect code
+	scoremanager.P2Score += 1;
         P1IsDead = true;
         Sprite.SetActive(false);
+	P1DeathScreen.SetActive(true);
+	respawnText.SetText("Respawning in 3...");
         GameObject skull = Instantiate(Skull, transform.position, Quaternion.Euler(0, 0, 0));
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1);
+	respawnText.SetText("Respawning in 2...");
+	yield return new WaitForSeconds(1);
+	respawnText.SetText("Respawning in 1...");
+	yield return new WaitForSeconds(1);
+	respawnText.SetText("Respawning...");
+	yield return new WaitForSeconds(1);
         transform.position = P1Spawn.transform.position;
         P1Health = 100;
         P1IsDead = false;
         Sprite.SetActive(true);
+	P1DeathScreen.SetActive(false);
         Destroy(skull);
     }
 

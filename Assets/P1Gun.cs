@@ -62,7 +62,7 @@ public class P1Gun : MonoBehaviour
         {
             //waitcode
             //play animation, slide          
-            text2.SetText("Reloading... ™");
+            text2.SetText("Reloading...");
             yield return new WaitForSeconds(reloadTime + 1);
             ammo = maxAmmo;
             Debug.Log(ammo);
@@ -73,7 +73,7 @@ public class P1Gun : MonoBehaviour
 
             //waitcode
             //play animation, no slide          
-            text2.SetText("Reloading... ™");
+            text2.SetText("Reloading...");
             yield return new WaitForSeconds(reloadTime);
             ammo = maxAmmo + 1;
             Debug.Log(ammo);
