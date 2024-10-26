@@ -1,24 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
-//using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using TMPro;
-
+//dummy comment
 public class P1Controller : MonoBehaviour
 {
     Rigidbody2D rb;
+
+    //Values
     [SerializeField] float MoveSpeed;
-    [SerializeField] float turnSpeed = 200f; // Adjust for your desired turn speed
-    private float currentRotation;
+    [SerializeField] float turnSpeed = 200f;
     [SerializeField] public float P1Health = 100f;
-    [SerializeField] GameObject P1Spawn;
-    public bool P1IsDead = false;
-    [SerializeField] GameObject Skull;
-    [Tooltip("McDonalds sprite, specifically.")][SerializeField] GameObject Sprite;
-    //pow! you are dead!
+
+    //Internal values
+    private float currentRotation;
+    public bool P1IsDead = false; //Variable for checking whether the player is dead (so as to stop them from doing anything)
+
+    //Prefabs
     [SerializeField] GameObject P1DeathScreen;
     [Tooltip("text 2: text harder")][SerializeField] TMP_Text respawnText;
     [SerializeField] ScoreManager scoremanager;
+    [SerializeField] GameObject Skull;
+    [SerializeField] GameObject Sprite;
+    [SerializeField] GameObject P1Spawn;
+
+    
+    
 
     // Start is called before the first frame update
     void Start()
@@ -29,11 +36,10 @@ public class P1Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        //Check for Q&E inputs for turning
         if (P1IsDead == false && Input.GetKey(KeyCode.Q))
         {
             currentRotation += turnSpeed * Time.deltaTime;
-
         }
 
         // Optionally, rotate clockwise with E
@@ -46,23 +52,14 @@ public class P1Controller : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //rb.velocity = new Vector2(Input.GetAxis("P1Horizontal") * MoveSpeed, Input.GetAxis("P1Vertical") * MoveSpeed);
-        /*Vector2 dir = new Vector2(Mathf.Cos(rb.rotation * Mathf.Deg2Rad), Mathf.Sin(rb.rotation * Mathf.Deg2Rad));
-
-        if (Input.GetKey(KeyCode.W))
-        {
-            rb.velocity = dir.normalized * MoveSpeed;
-        }
-        else if (Input.GetKey(KeyCode.S))
-        {
-            rb.velocity = dir.normalized * -MoveSpeed;
-        } */
-
+        //Initialize directions for movement
         Vector2 forwardDir = new Vector2(Mathf.Cos(rb.rotation * Mathf.Deg2Rad), Mathf.Sin(rb.rotation * Mathf.Deg2Rad));
         Vector2 rightDir = new Vector2(-forwardDir.y, forwardDir.x); // 90 degrees rotation for right
 
+        
         Vector2 desiredVelocity = Vector2.zero;
 
+        //Check for WASD inputs for movement
         if (P1IsDead == false && Input.GetKey(KeyCode.W))
         {
             desiredVelocity += forwardDir.normalized * MoveSpeed; // Move forward
@@ -82,15 +79,12 @@ public class P1Controller : MonoBehaviour
 
         rb.velocity = desiredVelocity;
 
-
-        // Rotate counterclockwise with Q
-
-        //transform.rotation = Quaternion.Euler(0, 0, currentRotation);
         rb.rotation = currentRotation;
     }
 
     public void TakeDamage(float damage)
     {
+        //Take damage... obviously...
         P1Health -= damage;
         //Damage effects & multipliers & stuff
         if (P1Health <= 0)
@@ -101,26 +95,35 @@ public class P1Controller : MonoBehaviour
 
     IEnumerator Die()
     {
-        //PREPARE THYSELF
-        //effect code
-	scoremanager.P2Score += 1;
+        
+        //Change scoreboard, disable sprite, enable death FX
+	    scoremanager.P2Score += 1;
         P1IsDead = true;
         Sprite.SetActive(false);
-	P1DeathScreen.SetActive(true);
-	respawnText.SetText("Respawning in 3...");
-        GameObject skull = Instantiate(Skull, transform.position, Quaternion.Euler(0, 0, 0));
+	    P1DeathScreen.SetActive(true);
+
+        //Respawn timers
+	    respawnText.SetText("Respawning in 3...");
+        GameObject skull = Instantiate(Skull, transform.position, Quaternion.Euler(0, 0, 0)); //Instantiate skull prefab for death effect
         yield return new WaitForSeconds(1);
-	respawnText.SetText("Respawning in 2...");
-	yield return new WaitForSeconds(1);
-	respawnText.SetText("Respawning in 1...");
-	yield return new WaitForSeconds(1);
-	respawnText.SetText("Respawning...");
-	yield return new WaitForSeconds(1);
+	    respawnText.SetText("Respawning in 2...");
+
+	    yield return new WaitForSeconds(1);
+	    respawnText.SetText("Respawning in 1...");
+
+
+	    yield return new WaitForSeconds(1);
+	    respawnText.SetText("Respawning...");
+
+	    yield return new WaitForSeconds(1);
+
+        //Respawn player
         transform.position = P1Spawn.transform.position;
         P1Health = 100;
         P1IsDead = false;
+        //Reenable sprite and disable death FX
         Sprite.SetActive(true);
-	P1DeathScreen.SetActive(false);
+	    P1DeathScreen.SetActive(false);
         Destroy(skull);
     }
 
