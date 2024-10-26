@@ -27,9 +27,19 @@ public class SceneLoader : MonoBehaviour
         SceneManager.LoadScene("MapSelect");
         Debug.Log("Switching scenes");
     }
+    public void ToKeybinds()
+    {
+        SceneManager.LoadScene("Keybinds");
+        Debug.Log("Switching scenes");
+    }
     public void ToWarehouse()
     {
         SceneManager.LoadScene("Warehouse");
+        Debug.Log("Switching scenes");
+    }
+    public void ToOffice()
+    {
+        SceneManager.LoadScene("Office");
         Debug.Log("Switching scenes");
     }
 }
