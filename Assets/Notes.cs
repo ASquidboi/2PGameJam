@@ -4,15 +4,30 @@ using UnityEngine;
 
 public class Notes : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    /* --NOTES--
+     *  4 weapons
+     *  Pistol - accuracy
+     *  AR - fire rate
+     *  Shotgun - dmg
+     *  knife - knife
+     *  swap between at will
+     *  
+     *  campaign, pvp (Splitscreen & online), zombie survival
+     *  
+     *  Abilities
+     *  
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+    */
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
