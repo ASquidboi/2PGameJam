@@ -18,6 +18,7 @@ public class P1Auto : MonoBehaviour
     [Tooltip("fire rate, still not a multiplier")][SerializeField] float fireRate;
     [SerializeField] GameObject MuzzleFlash;
     float nextTimeToFire;
+    [SerializeField] float spreadAngle = 15f;
 
 
 
@@ -46,9 +47,12 @@ public class P1Auto : MonoBehaviour
         if (Input.GetButton("P1Fire") && ammo > 0 && Time.time >= nextTimeToFire)
         {
             //Sound, Muzzleflash, etc
-            Instantiate(MuzzleFlash, bulletSpawn.transform.position, bulletSpawn.transform.rotation);
+            //Instantiate(MuzzleFlash, bulletSpawn.transform.position, bulletSpawn.transform.rotation);
             nextTimeToFire = Time.time + 1f / fireRate;
-            Instantiate(bullet, bulletSpawn.transform.position, bulletSpawn.transform.rotation);
+            //Instantiate(bullet, bulletSpawn.transform.position, bulletSpawn.transform.rotation);
+            float angle = Random.Range(-spreadAngle, spreadAngle);
+            Quaternion pelletRotation = Quaternion.Euler(bulletSpawn.transform.rotation.eulerAngles + new Vector3(0, 0, angle));
+            Instantiate(bullet, bulletSpawn.transform.position, pelletRotation);
 
             ammo -= 1;
         }

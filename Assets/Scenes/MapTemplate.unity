@@ -4919,7 +4919,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1474576883
 Transform:
   m_ObjectHideFlags: 0
@@ -7345,7 +7345,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2031528181
 Transform:
   m_ObjectHideFlags: 0
@@ -9272,6 +9272,7 @@ MonoBehaviour:
   text2: {fileID: 1610829874}
   fireRate: 10
   MuzzleFlash: {fileID: 7003774505502621068, guid: affbacc6216615548bcd5504517f1949, type: 3}
+  spreadAngle: 15
 --- !u!1 &7894726662995814241
 GameObject:
   m_ObjectHideFlags: 0
