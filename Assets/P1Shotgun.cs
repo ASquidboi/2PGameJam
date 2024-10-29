@@ -72,7 +72,7 @@ public class P1Shotgun : MonoBehaviour
         for (int i = 0; i < pellets; i++)
         {
             float angle = Random.Range(-spreadAngle, spreadAngle);
-            Quaternion pelletRotation = Quaternion.Euler(bulletSpawn.transform.rotation.eulerAngles + new Vector3(0, angle, 0));
+            Quaternion pelletRotation = Quaternion.Euler(bulletSpawn.transform.rotation.eulerAngles + new Vector3(0, 0, angle));
             Instantiate(bullet, bulletSpawn.transform.position, pelletRotation);
             Debug.Log("pellet fired");
         }
