@@ -16,6 +16,7 @@ public class P1Gun : MonoBehaviour
     [Tooltip("text")][SerializeField] TMP_Text text;
     [Tooltip("text 2: text harder")][SerializeField] TMP_Text text2;
     [Tooltip("fire rate, still not a multiplier")][SerializeField] float fireRate;
+    [SerializeField] GameObject MuzzleFlash;
     float nextTimeToFire;
 
 
@@ -45,8 +46,10 @@ public class P1Gun : MonoBehaviour
         if (Input.GetButtonDown("P1Fire") && ammo > 0 && Time.time >= nextTimeToFire)
         {
             //Sound, Muzzleflash, etc
+            Instantiate(MuzzleFlash, bulletSpawn.transform.position, bulletSpawn.transform.rotation);
             nextTimeToFire = Time.time + 1f / fireRate;
             Instantiate(bullet, bulletSpawn.transform.position, bulletSpawn.transform.rotation);
+            
             ammo -= 1;
         }
 
