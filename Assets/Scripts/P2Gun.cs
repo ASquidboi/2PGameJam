@@ -6,7 +6,7 @@ using TMPro;
 
 public class P2Gun : MonoBehaviour
 {
-    Vector3 mousePos;
+    
     [Tooltip("Bullet prefab. Not a multiplier.")][SerializeField] GameObject bullet;
     [Tooltip("Point where bullet spawns. Again. Not a multiplier.")][SerializeField] GameObject bulletSpawn;
     int ammo;
@@ -16,8 +16,9 @@ public class P2Gun : MonoBehaviour
     [Tooltip("text")][SerializeField] TMP_Text text;
     [Tooltip("text 2: text harder")][SerializeField] TMP_Text text2;
     [Tooltip("fire rate, still not a multiplier")][SerializeField] float fireRate;
+    [SerializeField] GameObject MuzzleFlash;
     float nextTimeToFire;
-
+    [SerializeField] float spreadAngle = 10f;
 
 
 
@@ -33,11 +34,11 @@ public class P2Gun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
         //Vector2 rotation_direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         //float angle = Mathf.Atan2(rotation_direction.y, rotation_direction.x) * Mathf.Rad2Deg;
 
-
+     
 
         //Quaternion desiredRotation = Quaternion.AngleAxis(angle, Vector3.forward);
         //transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, 0.025f);
@@ -45,8 +46,13 @@ public class P2Gun : MonoBehaviour
         if (Input.GetButtonDown("P2Fire") && ammo > 0 && Time.time >= nextTimeToFire)
         {
             //Sound, Muzzleflash, etc
+            Instantiate(MuzzleFlash, bulletSpawn.transform.position, bulletSpawn.transform.rotation);
             nextTimeToFire = Time.time + 1f / fireRate;
-            Instantiate(bullet, bulletSpawn.transform.position, bulletSpawn.transform.rotation);
+            //Instantiate(bullet, bulletSpawn.transform.position, bulletSpawn.transform.rotation);
+            float angle = Random.Range(-spreadAngle, spreadAngle);
+            Quaternion pelletRotation = Quaternion.Euler(bulletSpawn.transform.rotation.eulerAngles + new Vector3(0, 0, angle));
+            Instantiate(bullet, bulletSpawn.transform.position, pelletRotation);
+
             ammo -= 1;
         }
 
@@ -80,7 +86,7 @@ public class P2Gun : MonoBehaviour
             text2.SetText("");
         }
     }
-
+    
 
 
     //Transform.LookAt

@@ -4,22 +4,20 @@ using Unity.VisualScripting;
 using UnityEngine;
 using TMPro;
 
-public class P2Shotgun : MonoBehaviour
+public class P1Auto : MonoBehaviour
 {
 
     [Tooltip("Bullet prefab. Not a multiplier.")][SerializeField] GameObject bullet;
     [Tooltip("Point where bullet spawns. Again. Not a multiplier.")][SerializeField] GameObject bulletSpawn;
     int ammo;
     [Tooltip("Magazine capacity. not a multiplier.")][SerializeField] int maxAmmo;
-    [Tooltip("Time for reloads, in seconds (per shell)")][SerializeField] float reloadTime;
+    [Tooltip("Time for reloads, in seconds.")][SerializeField] float reloadTime;
     float reloadTimeWithSlide;
     [Tooltip("text")][SerializeField] TMP_Text text;
     [Tooltip("text 2: text harder")][SerializeField] TMP_Text text2;
     [Tooltip("fire rate, still not a multiplier")][SerializeField] float fireRate;
     [SerializeField] GameObject MuzzleFlash;
     float nextTimeToFire;
-
-    [SerializeField] int pellets = 5;
     [SerializeField] float spreadAngle = 15f;
 
 
@@ -46,48 +44,48 @@ public class P2Shotgun : MonoBehaviour
         //Quaternion desiredRotation = Quaternion.AngleAxis(angle, Vector3.forward);
         //transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, 0.025f);
 
-        if (Input.GetButtonDown("P2Fire") && ammo > 0 && Time.time >= nextTimeToFire)
+        if (Input.GetButton("P1Fire") && ammo > 0 && Time.time >= nextTimeToFire)
         {
             //Sound, Muzzleflash, etc
-            //Instantiate(MuzzleFlash, bulletSpawn.transform.position, bulletSpawn.transform.rotation);
-            //nextTimeToFire = Time.time + 1f / fireRate;
+            Instantiate(MuzzleFlash, bulletSpawn.transform.position, bulletSpawn.transform.rotation);
+            nextTimeToFire = Time.time + 1f / fireRate;
             //Instantiate(bullet, bulletSpawn.transform.position, bulletSpawn.transform.rotation);
+            float angle = Random.Range(-spreadAngle, spreadAngle);
+            Quaternion pelletRotation = Quaternion.Euler(bulletSpawn.transform.rotation.eulerAngles + new Vector3(0, 0, angle));
+            Instantiate(bullet, bulletSpawn.transform.position, pelletRotation);
 
-            //ammo -= 1;
-            FireShotgun();
+            ammo -= 1;
         }
 
-        if (Input.GetButtonDown("P2Reload") && ammo < maxAmmo + 1)
+        if (Input.GetButtonDown("P1Reload") && ammo < maxAmmo + 1)
         {
             StartCoroutine(Reload());
         }
         text.SetText(ammo + "/" + maxAmmo);
     }
-
-    void FireShotgun()
-    {
-        Instantiate(MuzzleFlash, bulletSpawn.transform.position, bulletSpawn.transform.rotation);
-        nextTimeToFire = Time.time + 1f / fireRate;
-
-        for (int i = 0; i < pellets; i++)
-        {
-            float angle = Random.Range(-spreadAngle, spreadAngle);
-            Quaternion pelletRotation = Quaternion.Euler(bulletSpawn.transform.rotation.eulerAngles + new Vector3(0, angle, 0));
-            Instantiate(bullet, bulletSpawn.transform.position, pelletRotation);
-            Debug.Log("pellet fired");
-        }
-
-        ammo--;
-    }
     IEnumerator Reload()
     {
-        text2.SetText("Reloading...");
-        while (ammo != 5)
+        if (ammo == 0)
         {
-            yield return new WaitForSeconds(reloadTime);
-            ammo++;
+            //waitcode
+            //play animation, slide          
+            text2.SetText("Reloading...");
+            yield return new WaitForSeconds(reloadTime + 1);
+            ammo = maxAmmo;
+            Debug.Log(ammo);
+            text2.SetText("");
         }
-        text2.SetText("");
+        else if (ammo > 0)
+        {
+
+            //waitcode
+            //play animation, no slide          
+            text2.SetText("Reloading...");
+            yield return new WaitForSeconds(reloadTime);
+            ammo = maxAmmo + 1;
+            Debug.Log(ammo);
+            text2.SetText("");
+        }
     }
 
 
