@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1651919613915926102}
   - component: {fileID: 4321910137520755941}
   m_Layer: 6
-  m_Name: 9mm
+  m_Name: ShotgunPellet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
