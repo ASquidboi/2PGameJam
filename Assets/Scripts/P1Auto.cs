@@ -7,18 +7,39 @@ using TMPro;
 public class P1Auto : MonoBehaviour
 {
 
-    [Tooltip("Bullet prefab. Not a multiplier.")][SerializeField] GameObject bullet;
-    [Tooltip("Point where bullet spawns. Again. Not a multiplier.")][SerializeField] GameObject bulletSpawn;
+    // GameObjects
+    [Tooltip("Bullet prefab.")]
+    [SerializeField] GameObject bullet;
+
+    [Tooltip("Point where bullet spawns. Obviously.")]
+    [SerializeField] GameObject bulletSpawn;
+
+    [Tooltip("Ammo display.")]
+    [SerializeField] TMP_Text ammoText;
+
+    [Tooltip("Text that appears when reloading.")]
+    [SerializeField] TMP_Text reloadText;
+
+    [Tooltip("Muzzle flash prefab.")]
+    [SerializeField] ParticleSystem MuzzleFlash;
+    // Values
+
+    [Tooltip("Magazine capacity.")]
+    [SerializeField] int maxAmmo;
+
+    [Tooltip("Time for reloads, in seconds.")]
+    [SerializeField] float reloadTime;
+
+    [Tooltip("Fire rate.")]
+    [SerializeField] float fireRate;
+
+    [Tooltip("The spread angle for bullets being instantiated. (Is multiplied by 2)")]
+    [SerializeField] float spreadAngle = 10f;
+
+    // Internal vars
     int ammo;
-    [Tooltip("Magazine capacity. not a multiplier.")][SerializeField] int maxAmmo;
-    [Tooltip("Time for reloads, in seconds.")][SerializeField] float reloadTime;
     float reloadTimeWithSlide;
-    [Tooltip("text")][SerializeField] TMP_Text text;
-    [Tooltip("text 2: text harder")][SerializeField] TMP_Text text2;
-    [Tooltip("fire rate, still not a multiplier")][SerializeField] float fireRate;
-    [SerializeField] GameObject MuzzleFlash;
     float nextTimeToFire;
-    [SerializeField] float spreadAngle = 15f;
 
 
 
@@ -29,7 +50,7 @@ public class P1Auto : MonoBehaviour
     {
         ammo = maxAmmo;
         reloadTimeWithSlide += 1;
-        text2.SetText("");
+        reloadText.SetText("");
     }
 
     // Update is called once per frame
@@ -47,9 +68,10 @@ public class P1Auto : MonoBehaviour
         if (Input.GetButton("P1Fire") && ammo > 0 && Time.time >= nextTimeToFire)
         {
             //Sound, Muzzleflash, etc
-            Instantiate(MuzzleFlash, bulletSpawn.transform.position, bulletSpawn.transform.rotation);
+            MuzzleFlash.Play();
             nextTimeToFire = Time.time + 1f / fireRate;
-            //Instantiate(bullet, bulletSpawn.transform.position, bulletSpawn.transform.rotation);
+
+            // Determine and apply bullet spread range
             float angle = Random.Range(-spreadAngle, spreadAngle);
             Quaternion pelletRotation = Quaternion.Euler(bulletSpawn.transform.rotation.eulerAngles + new Vector3(0, 0, angle));
             Instantiate(bullet, bulletSpawn.transform.position, pelletRotation);
@@ -61,7 +83,7 @@ public class P1Auto : MonoBehaviour
         {
             StartCoroutine(Reload());
         }
-        text.SetText(ammo + "/" + maxAmmo);
+        ammoText.SetText(ammo + "/" + maxAmmo);
     }
     IEnumerator Reload()
     {
@@ -69,26 +91,23 @@ public class P1Auto : MonoBehaviour
         {
             //waitcode
             //play animation, slide          
-            text2.SetText("Reloading...");
+            reloadText.SetText("Reloading...");
             yield return new WaitForSeconds(reloadTime + 1);
             ammo = maxAmmo;
             Debug.Log(ammo);
-            text2.SetText("");
+            reloadText.SetText("");
         }
         else if (ammo > 0)
         {
 
             //waitcode
             //play animation, no slide          
-            text2.SetText("Reloading...");
+            reloadText.SetText("Reloading...");
             yield return new WaitForSeconds(reloadTime);
             ammo = maxAmmo + 1;
             Debug.Log(ammo);
-            text2.SetText("");
+            reloadText.SetText("");
         }
     }
 
-
-
-    //Transform.LookAt
 }

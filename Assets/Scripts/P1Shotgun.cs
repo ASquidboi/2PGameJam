@@ -82,7 +82,7 @@ public class P1Shotgun : MonoBehaviour
     IEnumerator Reload()
     {
         text2.SetText("Reloading...");
-        while (ammo != 5)
+        while (ammo < 5)
         {
             yield return new WaitForSeconds(reloadTime);
             ammo++;

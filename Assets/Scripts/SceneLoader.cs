@@ -34,7 +34,7 @@ public class SceneLoader : MonoBehaviour
     }
     public void ToWarehouse()
     {
-        SceneManager.LoadScene("Warehouse");
+        SceneManager.LoadScene("dm_warehouse");
         Debug.Log("Switching scenes");
     }
     public void ToOffice()

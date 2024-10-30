@@ -1218,6 +1218,73 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 228635886}
   m_CullTransparentMesh: 1
+--- !u!1001 &255406880
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1563229618}
+    m_Modifications:
+    - target: {fileID: 4593324955345133601, guid: affbacc6216615548bcd5504517f1949, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4593324955345133601, guid: affbacc6216615548bcd5504517f1949, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4593324955345133601, guid: affbacc6216615548bcd5504517f1949, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4593324955345133601, guid: affbacc6216615548bcd5504517f1949, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.00000004371139
+      objectReference: {fileID: 0}
+    - target: {fileID: 4593324955345133601, guid: affbacc6216615548bcd5504517f1949, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4593324955345133601, guid: affbacc6216615548bcd5504517f1949, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4593324955345133601, guid: affbacc6216615548bcd5504517f1949, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4593324955345133601, guid: affbacc6216615548bcd5504517f1949, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4593324955345133601, guid: affbacc6216615548bcd5504517f1949, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4593324955345133601, guid: affbacc6216615548bcd5504517f1949, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7003774505502621068, guid: affbacc6216615548bcd5504517f1949, type: 3}
+      propertyPath: m_Name
+      value: WFX_MF FPS RIFLE2 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: affbacc6216615548bcd5504517f1949, type: 3}
+--- !u!4 &255406881 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4593324955345133601, guid: affbacc6216615548bcd5504517f1949, type: 3}
+  m_PrefabInstance: {fileID: 255406880}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &255406882 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3438111637133066230, guid: affbacc6216615548bcd5504517f1949, type: 3}
+  m_PrefabInstance: {fileID: 255406880}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &280177785
 GameObject:
   m_ObjectHideFlags: 0
@@ -6840,6 +6907,11 @@ MonoBehaviour:
   ID: 8
   self: {fileID: 149878201}
   controller: {fileID: 0}
+--- !u!4 &1563229618 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 106649147505210984, guid: 9ec8ae23d4957194390c80d6190289ce, type: 3}
+  m_PrefabInstance: {fileID: 2049154531020754125}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1563894181
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10745,6 +10817,18 @@ PrefabInstance:
       propertyPath: text2
       value: 
       objectReference: {fileID: 1610829874}
+    - target: {fileID: 5001505851485275366, guid: 9ec8ae23d4957194390c80d6190289ce, type: 3}
+      propertyPath: ammoText
+      value: 
+      objectReference: {fileID: 443005174}
+    - target: {fileID: 5001505851485275366, guid: 9ec8ae23d4957194390c80d6190289ce, type: 3}
+      propertyPath: reloadText
+      value: 
+      objectReference: {fileID: 1610829874}
+    - target: {fileID: 5001505851485275366, guid: 9ec8ae23d4957194390c80d6190289ce, type: 3}
+      propertyPath: MuzzleFlash
+      value: 
+      objectReference: {fileID: 255406882}
     - target: {fileID: 5571787823355203114, guid: 9ec8ae23d4957194390c80d6190289ce, type: 3}
       propertyPath: text
       value: 
@@ -10753,6 +10837,18 @@ PrefabInstance:
       propertyPath: text2
       value: 
       objectReference: {fileID: 1610829874}
+    - target: {fileID: 5571787823355203114, guid: 9ec8ae23d4957194390c80d6190289ce, type: 3}
+      propertyPath: ammoText
+      value: 
+      objectReference: {fileID: 443005174}
+    - target: {fileID: 5571787823355203114, guid: 9ec8ae23d4957194390c80d6190289ce, type: 3}
+      propertyPath: reloadText
+      value: 
+      objectReference: {fileID: 1610829874}
+    - target: {fileID: 5571787823355203114, guid: 9ec8ae23d4957194390c80d6190289ce, type: 3}
+      propertyPath: MuzzleFlash
+      value: 
+      objectReference: {fileID: 2049154531020754126}
     - target: {fileID: 6804646814683030794, guid: 9ec8ae23d4957194390c80d6190289ce, type: 3}
       propertyPath: P1Spawn
       value: 
@@ -10819,9 +10915,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 106649147505210984, guid: 9ec8ae23d4957194390c80d6190289ce, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 255406881}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ec8ae23d4957194390c80d6190289ce, type: 3}
+--- !u!198 &2049154531020754126 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5211747067901586704, guid: 9ec8ae23d4957194390c80d6190289ce, type: 3}
+  m_PrefabInstance: {fileID: 2049154531020754125}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4488798574046787338 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6712517210285615408, guid: db6708929caeef648afc140247b45526, type: 3}
@@ -10841,6 +10945,14 @@ PrefabInstance:
       objectReference: {fileID: 2104179113}
     - target: {fileID: 2818138916256164332, guid: db6708929caeef648afc140247b45526, type: 3}
       propertyPath: text2
+      value: 
+      objectReference: {fileID: 189801349}
+    - target: {fileID: 2818138916256164332, guid: db6708929caeef648afc140247b45526, type: 3}
+      propertyPath: ammoText
+      value: 
+      objectReference: {fileID: 2104179113}
+    - target: {fileID: 2818138916256164332, guid: db6708929caeef648afc140247b45526, type: 3}
+      propertyPath: reloadText
       value: 
       objectReference: {fileID: 189801349}
     - target: {fileID: 4112489373063666474, guid: db6708929caeef648afc140247b45526, type: 3}
