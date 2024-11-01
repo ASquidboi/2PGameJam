@@ -11,27 +11,16 @@ Link to play:
 Feel free to make fun of me, i know it's bad but it will get better
 
 # Changelog
-V 1.0
-<br>
-<br>
+-
+V 1.1.0
+-Revamped player and crate textures (more to come, looking for a different vibe)
+-Added 2 new weapons (rifle & shotgun)
+-Implemented various features such as bullet spread
+-Removed dm_office (It'll be back!)
+
+V 1.0.0/Prebeta
 -Made the game (obviously)
-<br>
--2 maps: dm_warehouse and dm_office
-<<<<<<< HEAD
-<br>
-<br>
-<br>
-V 1.1
-<br>
-<br>
--Added 2 new guns: Rifle & Shotgun
-<br>
--Updated player sprites
-<br>
--Temporarily remove dm_office (it looked bad)
-<br>
--Updated various stuff
-<br>
--Implemented various features for the guns such as bullet spread and shotgun stuff
-=======
+-Very basic
+-2 maps (dm_warehouse and dm_office)
+-Nuff' said
 >>>>>>> parent of e52bdcc (Update README.md)
