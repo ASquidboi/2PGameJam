@@ -13,10 +13,10 @@ public class P2Shotgun : MonoBehaviour
     [Tooltip("Magazine capacity. not a multiplier.")][SerializeField] int maxAmmo;
     [Tooltip("Time for reloads, in seconds (per shell)")][SerializeField] float reloadTime;
     float reloadTimeWithSlide;
-    [Tooltip("text")][SerializeField] TMP_Text text;
-    [Tooltip("text 2: text harder")][SerializeField] TMP_Text text2;
+    [Tooltip("text")][SerializeField] TMP_Text ammoText;
+    [Tooltip("text 2: text harder")][SerializeField] TMP_Text reloadText;
     [Tooltip("fire rate, still not a multiplier")][SerializeField] float fireRate;
-    [SerializeField] GameObject MuzzleFlash;
+    [SerializeField] ParticleSystem MuzzleFlash;
     float nextTimeToFire;
 
     [SerializeField] int pellets = 5;
@@ -31,7 +31,7 @@ public class P2Shotgun : MonoBehaviour
     {
         ammo = maxAmmo;
         reloadTimeWithSlide += 1;
-        text2.SetText("");
+        reloadText.SetText("");
     }
 
     // Update is called once per frame
@@ -61,12 +61,12 @@ public class P2Shotgun : MonoBehaviour
         {
             StartCoroutine(Reload());
         }
-        text.SetText(ammo + "/" + maxAmmo);
+        ammoText.SetText(ammo + "/" + maxAmmo);
     }
 
     void FireShotgun()
     {
-        Instantiate(MuzzleFlash, bulletSpawn.transform.position, bulletSpawn.transform.rotation);
+        MuzzleFlash.Play();
         nextTimeToFire = Time.time + 1f / fireRate;
 
         for (int i = 0; i < pellets; i++)
@@ -81,13 +81,13 @@ public class P2Shotgun : MonoBehaviour
     }
     IEnumerator Reload()
     {
-        text2.SetText("Reloading...");
+        reloadText.SetText("Reloading...");
         while (ammo != 5)
         {
             yield return new WaitForSeconds(reloadTime);
             ammo++;
         }
-        text2.SetText("");
+        reloadText.SetText("");
     }
 
 

@@ -554,10 +554,10 @@ MonoBehaviour:
   bulletSpawn: {fileID: 8511347146475274926}
   maxAmmo: 5
   reloadTime: 1
-  text: {fileID: 0}
-  text2: {fileID: 0}
+  ammoText: {fileID: 0}
+  reloadText: {fileID: 0}
   fireRate: 2.5
-  MuzzleFlash: {fileID: 7003774505502621068, guid: affbacc6216615548bcd5504517f1949, type: 3}
+  MuzzleFlash: {fileID: 3438111637133066230, guid: affbacc6216615548bcd5504517f1949, type: 3}
   pellets: 5
   spreadAngle: 35
 --- !u!1 &2512724305581590760
@@ -1862,12 +1862,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 6420051047195003653, guid: 5cf0dfa3271114540a1534c2e8b67aee, type: 3}
   bulletSpawn: {fileID: 9047450049764179925}
+  ammoText: {fileID: 0}
+  reloadText: {fileID: 0}
+  MuzzleFlash: {fileID: 7003774505502621068, guid: affbacc6216615548bcd5504517f1949, type: 3}
   maxAmmo: 30
   reloadTime: 2
-  text: {fileID: 0}
-  text2: {fileID: 0}
   fireRate: 10
-  MuzzleFlash: {fileID: 7003774505502621068, guid: affbacc6216615548bcd5504517f1949, type: 3}
   spreadAngle: 15
 --- !u!1 &6384834256725381199
 GameObject:

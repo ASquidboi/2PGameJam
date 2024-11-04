@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using TMPro;
 
-public class P1Shotgun : MonoBehaviour
+public class CShotgun : MonoBehaviour
 {
 
     [Tooltip("Bullet prefab. Not a multiplier.")][SerializeField] GameObject bullet;
@@ -46,7 +46,7 @@ public class P1Shotgun : MonoBehaviour
         //Quaternion desiredRotation = Quaternion.AngleAxis(angle, Vector3.forward);
         //transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, 0.025f);
 
-        if (Input.GetButtonDown("P1Fire") && ammo > 0 && Time.time >= nextTimeToFire)
+        if (Input.GetButtonDown("CFire") && ammo > 0 && Time.time >= nextTimeToFire)
         {
             //Sound, Muzzleflash, etc
             //Instantiate(MuzzleFlash, bulletSpawn.transform.position, bulletSpawn.transform.rotation);
@@ -57,7 +57,7 @@ public class P1Shotgun : MonoBehaviour
             FireShotgun();
         }
 
-        if (Input.GetButtonDown("P1Reload") && ammo < maxAmmo + 1)
+        if (Input.GetButtonDown("CReload") && ammo < maxAmmo + 1)
         {
             StartCoroutine(Reload());
         }
