@@ -18,6 +18,7 @@ public class P1Bullet : MonoBehaviour
     {
         P1Controller enemy = collision.gameObject.GetComponent<P1Controller>();
         P2Controller enemy2 = collision.gameObject.GetComponent<P2Controller>();
+        EnemyHealth CEnemy = collision.gameObject.GetComponent<EnemyHealth>();
 
         if (enemy != null)
         {   
@@ -26,6 +27,10 @@ public class P1Bullet : MonoBehaviour
         if (enemy2 != null)
         {
             enemy2.TakeDamage(damage);
+        }
+        if (CEnemy != null)
+        {
+            CEnemy.TakeDamage(damage);
         }
         Destroy(gameObject); //Prevents object spam
     }

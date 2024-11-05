@@ -16,7 +16,7 @@ public class CAuto : MonoBehaviour
     [Tooltip("text")][SerializeField] TMP_Text ammoText;
     [Tooltip("text 2: text harder")][SerializeField] TMP_Text reloadText;
     [Tooltip("fire rate, still not a multiplier")][SerializeField] float fireRate;
-    [SerializeField] GameObject MuzzleFlash;
+    [SerializeField] ParticleSystem MuzzleFlash;
     float nextTimeToFire;
     [SerializeField] float spreadAngle = 15f;
 
@@ -47,7 +47,8 @@ public class CAuto : MonoBehaviour
         if (Input.GetButton("CFire") && ammo > 0 && Time.time >= nextTimeToFire)
         {
             //Sound, Muzzleflash, etc
-            Instantiate(MuzzleFlash, bulletSpawn.transform.position, bulletSpawn.transform.rotation);
+            //Instantiate(MuzzleFlash, bulletSpawn.transform.position, bulletSpawn.transform.rotation);
+            MuzzleFlash.Play();
             nextTimeToFire = Time.time + 1f / fireRate;
             //Instantiate(bullet, bulletSpawn.transform.position, bulletSpawn.transform.rotation);
             float angle = Random.Range(-spreadAngle, spreadAngle);
